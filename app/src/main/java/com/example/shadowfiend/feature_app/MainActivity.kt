@@ -4,6 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.shadowfiend.feature_app.presintation.signup.SignUpScreen
 import com.example.shadowfiend.feature_app.presintation.ui.theme.ShadowfiendTheme
 
 class MainActivity : ComponentActivity() {
@@ -12,6 +16,13 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ShadowfiendTheme {
+                val navcontroller = rememberNavController()
+
+                NavHost(navController = navcontroller, startDestination = Routes.SignUp.route) {
+                    composable(Routes.SignUp.route) {
+                        SignUpScreen()
+                    }
+                }
 
             }
         }

@@ -23,11 +23,8 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.shadowfiend.feature_app.presintation.ui.theme.Description
-import com.example.shadowfiend.feature_app.presintation.ui.theme.InputBg
-import com.example.shadowfiend.feature_app.presintation.ui.theme.InputIcon
 
-@Preview(showBackground = true)
+
 @Composable
 fun SignUpScreen(viewModel: SignUpViewModel) {
     val mail = rememberSaveable() { mutableStateOf(viewModel.email) }
@@ -47,7 +44,7 @@ fun SignUpScreen(viewModel: SignUpViewModel) {
         Spacer(Modifier.size(64.dp))
         Text(
             "Вход по E-mail",
-            color = Color.Description
+            color = Color.Gray
         )
         Spacer(Modifier.size(5.dp))
         OutlinedTextField(
@@ -56,12 +53,7 @@ fun SignUpScreen(viewModel: SignUpViewModel) {
             placeholder = { Text("example@gmail.com")},
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(10.dp),
-            colors = TextFieldDefaults.colors(
-                unfocusedLabelColor = Color.InputBg,
-                focusedLabelColor = Color.InputBg,
-                unfocusedPlaceholderColor = Color.Description,
-                focusedPlaceholderColor = Color.Description
-            )
+
 
         )
         OutlinedTextField(

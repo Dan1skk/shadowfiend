@@ -9,21 +9,24 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.shadowfiend.feature_app.presintation.signup.SignUpScreen
 import com.example.shadowfiend.feature_app.presintation.ui.theme.ShadowfiendTheme
+import com.example.shadowfiend.feature_app.presintation.welcome.WelcomeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            ShadowfiendTheme {
-                val navcontroller = rememberNavController()
-
-                NavHost(navController = navcontroller, startDestination = Routes.SignUp.route) {
-                    composable(Routes.SignUp.route) {
-                        SignUpScreen()
-                    }
-                }
-
+//            ShadowfiendTheme {
+//                val navcontroller = rememberNavController()
+//
+//                NavHost(navController = navcontroller, startDestination = Routes.SignUp.route) {
+//                    composable(Routes.SignUp.route) {
+//                        SignUpScreen()
+//                    }
+//                }
+//
+//            }
+            ShadowfiendTheme() {             WelcomeScreen()
             }
         }
     }

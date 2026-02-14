@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.shadowfiend.feature_app.presintation.signup.SignUpScreen
+import com.example.shadowfiend.feature_app.presintation.signin.SignUpScreen
 import com.example.shadowfiend.feature_app.presintation.ui.theme.ShadowfiendTheme
 import com.example.shadowfiend.feature_app.presintation.welcome.WelcomeScreen
 
@@ -16,18 +16,20 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-//            ShadowfiendTheme {
-//                val navcontroller = rememberNavController()
-//
-//                NavHost(navController = navcontroller, startDestination = Routes.SignUp.route) {
-//                    composable(Routes.SignUp.route) {
-//                        SignUpScreen()
-//                    }
-//                }
-//
-//            }
-            ShadowfiendTheme() {             WelcomeScreen()
+            ShadowfiendTheme {
+                val navcontroller = rememberNavController()
+
+                NavHost(navController = navcontroller, startDestination = "Welcome") {
+                    composable("SignIn") {
+                        SignUpScreen(navcontroller)
+                    }
+                    composable("Welcome") {
+                        WelcomeScreen(navcontroller)
+                    }
+                }
+
             }
+
         }
     }
 }

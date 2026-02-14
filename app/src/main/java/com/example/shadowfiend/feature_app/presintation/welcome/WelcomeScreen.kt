@@ -19,6 +19,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,11 +38,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.res.ResourcesCompat
+import androidx.navigation.NavController
 import com.example.shadowfiend.R
 import com.example.shadowfiend.feature_app.presintation.ui.theme.AppColors
 
 @Composable
-fun WelcomeScreen() {
+fun WelcomeScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -134,12 +136,14 @@ fun WelcomeScreen() {
                         .background(Color.Gray.copy(alpha = 0.5f))
                 )
             }
+
+            // кнопка со стрелкой
             Box(
                 modifier = Modifier.fillMaxWidth(),
                 contentAlignment = Alignment.CenterEnd,
             ) {
                 FloatingActionButton(
-                    onClick = {},
+                    onClick = {navController.navigate("SignIn")},
                     containerColor = AppColors.c14AC46,
                     contentColor = Color.White,
                     shape = CircleShape,

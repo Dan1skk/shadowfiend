@@ -16,7 +16,7 @@ class SignInViewModel(
 
     var isAuthComplete by mutableStateOf(false)
 
-    fun onSignUp() {
+    fun onSignIn() {
         viewModelScope.launch {
             signInUseCase(
                 email = email,

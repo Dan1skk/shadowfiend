@@ -1,4 +1,26 @@
 package com.example.shadowfiend.feature_app.presintation.signup
 
-class SignUpViewModel {
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.shadowfiend.feature_app.domain.usecase.auth.SignUpUseCase
+import kotlinx.coroutines.launch
+
+class SignUpViewModel(
+    private val signUpUseCase: SignUpUseCase
+): ViewModel() {
+    var email by mutableStateOf("")
+    var password by mutableStateOf("")
+    var name by mutableStateOf("")
+    var phone by mutableStateOf("")
+
+    fun onSignUp() {
+        viewModelScope.launch {
+            signUpUseCase(
+                email, password, name, phone
+            )
+        }
+    }
 }

@@ -47,17 +47,15 @@ import com.example.shadowfiend.feature_app.presintation.ui.theme.AppColors
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SignUpScreen(
+fun SignInScreen(
     navController: NavController,
     viewModel: SignInViewModel = koinViewModel()
 ) {
-    var mail = rememberSaveable() { mutableStateOf(viewModel.email) }
-    var password = rememberSaveable() { mutableStateOf(viewModel.password) }
 
     LaunchedEffect(viewModel.isAuthComplete) {
         if (viewModel.isAuthComplete) {
             navController.navigate(Routes.Welcome.route) {
-                popUpTo(Routes.SignUp.route) { inclusive = true }
+                popUpTo("SignIn") { inclusive = true }
             }
         }
     }
@@ -100,8 +98,8 @@ fun SignUpScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             TextField(
-                value = mail.value,
-                onValueChange = { mail.value = it },
+                value = viewModel.email,
+                onValueChange = { viewModel.email = it },
                 placeholder = {
                     Text(
                         "Адрес электронной почты",
@@ -134,8 +132,8 @@ fun SignUpScreen(
             Spacer(Modifier.size(16.dp))
 
             TextField(
-                value = password.value,
-                onValueChange = { password.value = it },
+                value = viewModel.password,
+                onValueChange = { viewModel.password = it },
                 placeholder = {
                     Text(
                         "Пароль",
@@ -190,7 +188,7 @@ fun SignUpScreen(
 
         // кнопка
         IconButton(
-            onClick = { viewModel.onSignUp() },
+            onClick = { viewModel.onSignIn() },
             modifier = Modifier
                 .padding(top = 20.dp)
                 .align(Alignment.End)

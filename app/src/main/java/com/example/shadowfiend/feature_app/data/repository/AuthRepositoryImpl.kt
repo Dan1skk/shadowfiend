@@ -5,13 +5,25 @@ import com.example.shadowfiend.feature_app.data.network.Supabase.client
 import com.example.shadowfiend.feature_app.domain.repository.AuthRepository
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.providers.builtin.Email
+import io.github.jan.supabase.postgrest.from
 
 class AuthRepositoryImpl(): AuthRepository{
-    override suspend fun SignUp(email: String, pass: String) {
+    override suspend fun SignUp(email: String, pass: String, name: String, phone: String) {
+        val authResponse =
         client.auth.signUpWith(Email) {
             this.email = email
             password = pass
         }
+
+        val userId = authResponse?.id?: return
+
+        client.from("profiles").insert(
+            mapOf(
+                "id" to userId,
+                "name" to name,
+                "phone" to phone
+            )
+        )
     }
 
     override suspend fun SignIn(email: String, pass: String) {

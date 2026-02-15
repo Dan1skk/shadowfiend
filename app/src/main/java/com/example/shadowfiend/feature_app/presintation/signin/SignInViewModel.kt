@@ -13,17 +13,19 @@ class SignInViewModel(
 ) : ViewModel() {
     var email by mutableStateOf("")
     var password by mutableStateOf("")
-
     var isAuthComplete by mutableStateOf(false)
 
     fun onSignIn() {
-        viewModelScope.launch {
-            signInUseCase(
-                email = email,
-                pass = password
-            )
-            isAuthComplete = true
+        if (email.isNotBlank() and password.isNotBlank()) {
+            viewModelScope.launch {
+                signInUseCase(
+                    email = email,
+                    pass = password
+                )
+                isAuthComplete = true
+            }
         }
+        else println("ашiбачка")
     }
 
 }

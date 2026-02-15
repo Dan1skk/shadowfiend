@@ -23,6 +23,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,10 +41,29 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
 import com.example.shadowfiend.R
+import com.example.shadowfiend.feature_app.Routes
+import com.example.shadowfiend.feature_app.data.network.Supabase.client
 import com.example.shadowfiend.feature_app.presintation.ui.theme.AppColors
+import io.github.jan.supabase.auth.auth
+import kotlinx.coroutines.delay
 
 @Composable
 fun WelcomeScreen(navController: NavController) {
+    LaunchedEffect(Unit) {
+        delay(1500)
+        val session = client.auth.currentSessionOrNull()
+
+        if (session != null) {
+            navController.navigate(Routes.StartUp.route) {
+                popUpTo(Routes.Welcome.route) { inclusive = true }
+            }
+        } else {
+            navController.navigate(Routes.SignIn.route) {
+                popUpTo(Routes.Welcome.route) { inclusive = true }
+            }
+        }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()

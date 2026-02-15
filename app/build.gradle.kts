@@ -56,6 +56,7 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
+    // implementations
     // supa
     implementation(platform("io.github.jan-tennert.supabase:bom:3.2.4"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
@@ -66,7 +67,7 @@ dependencies {
     //coil
     implementation("io.coil-kt:coil-compose:2.4.0")
 
-    // splash
+    //splash
     implementation("androidx.core:core-splashscreen:1.0.0-beta02")
 
     //ktor koin
@@ -76,5 +77,6 @@ dependencies {
     implementation("io.insert-koin:koin-core-coroutines")
     implementation("io.insert-koin:koin-androidx-workmanager")
     implementation("io.insert-koin:koin-androidx-compose:3.3.0")
+
 
 }

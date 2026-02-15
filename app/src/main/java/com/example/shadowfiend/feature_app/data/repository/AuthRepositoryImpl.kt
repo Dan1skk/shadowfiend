@@ -15,15 +15,20 @@ class AuthRepositoryImpl(): AuthRepository{
             password = pass
         }
 
-        val userId = authResponse?.id?: return
+        val userId = authResponse?.id ?: client.auth.currentUserOrNull()?.id
 
-        client.from("profiles").insert(
-            mapOf(
-                "id" to userId,
-                "name" to name,
-                "phone" to phone
+        if (userId != null) {
+            // 2. Вставляем данные в профиль
+            client.from("profiles").insert(
+                mapOf(
+                    "userId" to userId,
+                    "name" to name,
+                    "phone" to phone
+                )
             )
-        )
+        } else {
+            println("Ошибка: ID пользователя не получен. Возможно, нужно подтверждение почты.")
+        }
     }
 
     override suspend fun SignIn(email: String, pass: String) {

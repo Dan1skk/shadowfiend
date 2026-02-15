@@ -29,8 +29,10 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,6 +40,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -51,10 +54,11 @@ fun SignInScreen(
     navController: NavController,
     viewModel: SignInViewModel = koinViewModel()
 ) {
+    var passwordVisible by rememberSaveable { mutableStateOf(false) }
 
     LaunchedEffect(viewModel.isAuthComplete) {
         if (viewModel.isAuthComplete) {
-            navController.navigate(Routes.Welcome.route) {
+            navController.navigate("StartUp") {
                 popUpTo("SignIn") { inclusive = true }
             }
         }
@@ -158,14 +162,17 @@ fun SignInScreen(
                     }
                 },
                 trailingIcon = {
-                        Image(
-                            painterResource(R.drawable.eye),
+                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        Icon(
+                            painter = painterResource(
+                                if (passwordVisible) R.drawable.eye else R.drawable.welcomeico // используй свои ресурсы
+                            ),
                             contentDescription = null,
                             modifier = Modifier.size(18.dp)
                         )
-
+                    }
                 },
-                visualTransformation = PasswordVisualTransformation(),
+                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.Transparent,
                     unfocusedContainerColor = Color.Transparent
@@ -261,7 +268,9 @@ fun SignInScreen(
 
         // впревые
         Row(
-            modifier = Modifier.fillMaxWidth().padding(top = 26.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 26.dp),
             horizontalArrangement = Arrangement.Start
         ) {
             Text(
@@ -274,7 +283,7 @@ fun SignInScreen(
                 fontSize = 14.sp,
                 color = AppColors.c14AC46,
                 modifier = Modifier.clickable {
-                    navController.navigate("signup")
+                    navController.navigate("SignUp")
                 }
             )
         }

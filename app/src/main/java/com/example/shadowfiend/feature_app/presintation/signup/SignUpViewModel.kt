@@ -10,17 +10,26 @@ import kotlinx.coroutines.launch
 
 class SignUpViewModel(
     private val signUpUseCase: SignUpUseCase
-): ViewModel() {
+) : ViewModel() {
     var email by mutableStateOf("")
     var password by mutableStateOf("")
     var name by mutableStateOf("")
     var phone by mutableStateOf("")
+    var showAlertDiag by mutableStateOf(false)
+
 
     fun onSignUp() {
         viewModelScope.launch {
-            signUpUseCase(
-                email, password, name, phone
-            )
+            try {
+
+                signUpUseCase(
+                    email, password, name, phone
+                )
+            } catch (e: Exception) {
+                showAlertDiag = true
+            }
         }
     }
+
+
 }

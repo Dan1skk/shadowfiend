@@ -55,7 +55,12 @@ fun SignInScreen(
     viewModel: SignInViewModel = koinViewModel()
 ) {
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
-
+    val customTextFieldColors = TextFieldDefaults.colors(
+        unfocusedContainerColor = Color.Transparent,
+        focusedContainerColor = Color.Transparent,
+        unfocusedIndicatorColor = Color.LightGray,
+        focusedIndicatorColor = Color.LightGray,
+    )
     LaunchedEffect(viewModel.isAuthComplete) {
         if (viewModel.isAuthComplete) {
             navController.navigate("StartUp") {
@@ -126,10 +131,7 @@ fun SignInScreen(
                         )
                     }
                 },
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color.Transparent,
-                    unfocusedContainerColor = Color.Transparent
-                ),
+                colors = customTextFieldColors,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
 
             )
@@ -173,10 +175,7 @@ fun SignInScreen(
                     }
                 },
                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color.Transparent,
-                    unfocusedContainerColor = Color.Transparent
-                ),
+                colors = customTextFieldColors,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
 

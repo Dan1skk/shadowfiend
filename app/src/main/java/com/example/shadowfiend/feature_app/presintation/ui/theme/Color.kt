@@ -25,6 +25,7 @@ object AppColors {
     val DeepBlue = Color(0xFF334855)
     val DeepBlue20 = Color(0xFF334855).copy(alpha = 0.2f)
     val MutedGreen = Color(0xFF35764A)
-    val Anthracite = Color(0xFF424C45)
+    val inactive = Color(0xFF424C45)
     val SlateGray = Color(0xFFB7BBC9)
+    val A1A1A1 = Color(0xFFA1A1A1)
 }

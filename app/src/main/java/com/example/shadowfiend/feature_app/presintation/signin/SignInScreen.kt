@@ -241,7 +241,7 @@ fun SignInScreen(
                 }
                 Spacer(Modifier.size(6.dp))
                 IconButton(
-                    onClick = {},
+                    onClick = {navController.navigate(Routes.Menu.route)},
                     modifier = Modifier.size(38.dp)
 
                 ) {

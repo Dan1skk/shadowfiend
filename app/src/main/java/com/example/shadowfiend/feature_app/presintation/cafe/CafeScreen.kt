@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.shadowfiend.R
+import com.example.shadowfiend.feature_app.Routes
 
 // Основные цвета из макета
 val AppGreen = Color(0xFF1DB954)
@@ -65,9 +66,7 @@ fun CafeScreen() {
                     .background(Color.White)
                     .padding(20.dp)
             ) {
-                AddressItem("ул. Туркестанская, 3")
-                AddressItem("ул. Чкалова, 32")
-                AddressItem("ул. Советская, 3")
+                AddressItem("ул. Туркестанская, 3", Routes.Menu.route)
 
                 // Отступ снизу для красоты
                 Spacer(modifier = Modifier.height(20.dp))
@@ -77,9 +76,9 @@ fun CafeScreen() {
 }
 
 @Composable
-fun AddressItem(address: String) {
+fun AddressItem(address: String, route: String) {
     Surface(
-        onClick = { /* Handle click */ },
+        onClick = { route },
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 6.dp),

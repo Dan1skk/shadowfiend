@@ -8,12 +8,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.shadowfiend.feature_app.data.network.Supabase.client
+import com.example.shadowfiend.feature_app.presintation.menu.MenuScreen
+import com.example.shadowfiend.feature_app.presintation.order.CoffeeOrderScreen
+import com.example.shadowfiend.feature_app.presintation.profile.ProfileScreen
+import com.example.shadowfiend.feature_app.presintation.qrcode.QrCodeScreen
 import com.example.shadowfiend.feature_app.presintation.signin.SignInScreen
 import com.example.shadowfiend.feature_app.presintation.signup.SignUpScreen
 import com.example.shadowfiend.feature_app.presintation.startup.StartUpScreen
 import com.example.shadowfiend.feature_app.presintation.ui.theme.ShadowfiendTheme
 import com.example.shadowfiend.feature_app.presintation.welcome.WelcomeScreen
 import io.github.jan.supabase.auth.auth
+import okhttp3.Route
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,23 +26,26 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ShadowfiendTheme {
-                val navcontroller = rememberNavController()
-
-                NavHost(navController = navcontroller, startDestination = Routes.Welcome.route) {
-                    composable(Routes.SignIn.route) {
-                        SignInScreen(navcontroller)
-                    }
-                    composable(Routes.Welcome.route) {
-                        WelcomeScreen(navcontroller)
-                    }
-                    composable(Routes.SignUp.route) {
-                        SignUpScreen(navcontroller)
-                    }
-                    composable(Routes.StartUp.route) {
-                        StartUpScreen(navcontroller)
-                    }
-                }
-
+//                val navcontroller = rememberNavController()
+//
+//                NavHost(navController = navcontroller, startDestination = Routes.Welcome.route) {
+//                    composable(Routes.SignIn.route) {
+//                        SignInScreen(navcontroller)
+//                    }
+//                    composable(Routes.Welcome.route) {
+//                        WelcomeScreen(navcontroller)
+//                    }
+//                    composable(Routes.SignUp.route) {
+//                        SignUpScreen(navcontroller)
+//                    }
+//                    composable(Routes.StartUp.route) {
+//                        StartUpScreen(navcontroller)
+//                    }
+//                    composable(Routes.Menu.route) {
+//                        MenuScreen(navcontroller)
+//                    }
+//                }
+                CoffeeOrderScreen()
             }
 
         }
